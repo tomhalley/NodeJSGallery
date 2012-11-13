@@ -1,17 +1,20 @@
 var http = require("http");
+var url = require("url");
+var router = require("./router");
 
-function start() {
-	var self = this;
-	
-
+function start(route) {
 	function onRequest(request, response) {
-		console.log("Request Received");
+		var pathname = url.parse(request.url).pathname;
+		console.log("Request Received: " + pathname);
+
+		router.route(pathname);
+
 		response.writeHeader(200, {"Content-Type": "text/plain"});
 		response.write("Hello World");
 		response.end();
 	}
 
-	http.createServer(self.onRequest).listen(8080);
+	http.createServer(onRequest).listen(8080);
 
 	console.log("Server has started.");
 }
