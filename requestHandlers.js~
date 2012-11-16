@@ -4,15 +4,13 @@ function start(response) {
 	console.log("Request handler 'start' was called.");
 
 	exec("sudo updatedb", function (error, stdout, stderr) {
-		exec("G547eyuz**", function (error, stdout, stderr) {
-			response.writeHead(200, {"Content-Type": "text/plain"});
-			if(stderr) {
-				response.write(stderr);
-			} else {
-				response.write(stdout);
-			}
-			response.end();
-		});
+		response.writeHead(200, {"Content-Type": "text/plain"});
+		if(stderr) {
+			response.write(stderr);
+		} else {
+			response.write(stdout);
+		}
+		response.end();
 	});
 }
 
