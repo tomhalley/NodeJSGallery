@@ -1,4 +1,5 @@
 var fs = require('fs');
+var errmsg = require('./error').errmsg;
 var getMimeType = require('./simple-mime.js')('application/octect-stream');
 
 function route(handle, pathname, response) {
@@ -11,17 +12,26 @@ function route(handle, pathname, response) {
 		var url = pathname.split('/');
 
 		fs.readdir('./views/' + url[1], function(err, data) {
-			if(data[url[2]] !== 'undefined') {
+			if(data !== 'undefined') {
 				if(url[1] == "img") {
 					console.log("File is an image");
-					fs.readFile('./views' + decodeURIComponent(pathname), 'utf8', function(err, data) {
-						response.writeHead(200, {"Content-Type": getMimeType(pathname)});
-						response.end(data, 'binary');
+					fs.readFile('./views' + decodeURIComponent(pathname), function(err, data) {
+						if(err) {
+							errmsg(response);
+						} else {
+							response.writeHead(200, {"Content-Type": getMimeType(pathname)});
+							response.write(data, 'binary');
+							response.end();
+						}
 					});
 				} else {
 					fs.readFile('./views' + decodeURIComponent(pathname), 'utf8', function(err, data) {
-						response.writeHead(200, {"Content-Type": getMimeType(pathname)});
-						response.end(data);
+						if(err) {
+							errmsg(response);
+						} else {
+							response.writeHead(200, {"Content-Type": getMimeType(pathname)});
+							response.end(data);
+						}
 					});
 				}
 			} else {

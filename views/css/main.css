@@ -108,3 +108,9 @@ nav ul li a:hover {
 section#main {
 	padding: 15px;
 }
+
+section#main img {
+	width: 150px;
+	height: 150px;
+	margin: 10px;
+}

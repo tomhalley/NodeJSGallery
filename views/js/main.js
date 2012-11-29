@@ -18,6 +18,9 @@ function ViewModel(ko) {
 	this.getImages();
 }
 
-require(['js/knockout.js', 'js/jquery.js'], function(ko) {
+require([
+	'js/knockout.js', 
+	'js/jquery.js'
+	], function(ko) {
 	ko.applyBindings(new ViewModel(ko));
 })
