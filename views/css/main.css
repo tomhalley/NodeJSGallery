@@ -59,6 +59,7 @@ html {
 }
 
 body {
+	border-radius: 2px;
 	width: 960px;
 	margin: 30px auto 0 auto;
 	background: #fff;
@@ -77,12 +78,13 @@ h2 {
 }
 
 header {
+	border-radius: 2px 2px 0 0;
 	background: #1f3642;
 	padding: 25px 15px 30px 15px;
 }
 
 nav {
-	width: 100%;
+	padding-left: 10px;
 	height: 32px;
 	background: #6d968d;
 }
@@ -94,7 +96,7 @@ nav ul li {
 nav ul li a {
 	display: block;
 	float: left;
-	padding: 7px 15px;
+	margin: 6px 15px 0 0;
 	text-decoration: none;
 	color: #1f3642;
 }

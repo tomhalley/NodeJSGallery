@@ -9,20 +9,27 @@ function route(handle, pathname, response) {
 	} else {
 
 		var url = pathname.split('/');
-		var dir = fs.readdirSync('./views/' + url[1]);
 
-		if(dir[url[2]] !== 'undefined') {
-			fs.readFile('./views' + pathname, 'utf8', function(err, html) {
-				response.writeHead(200, {"Content-Type": getMimeType(pathname)});
-				response.write(html);
-				response.end();
-			});
-		} else {
-			console.log("No request handler found for " + pathname);
-			response.writeHead(404, {"Content-Type": "text/plain"});
-	    	response.write("404 Not found");
-			response.end();
-		}
+		fs.readdir('./views/' + url[1], function(err, data) {
+			if(data[url[2]] !== 'undefined') {
+				if(url[1] == "img") {
+					console.log("File is an image");
+					fs.readFile('./views' + decodeURIComponent(pathname), 'utf8', function(err, data) {
+						response.writeHead(200, {"Content-Type": getMimeType(pathname)});
+						response.end(data, 'binary');
+					});
+				} else {
+					fs.readFile('./views' + decodeURIComponent(pathname), 'utf8', function(err, data) {
+						response.writeHead(200, {"Content-Type": getMimeType(pathname)});
+						response.end(data);
+					});
+				}
+			} else {
+				console.log("No request handler found for " + pathname);
+				response.writeHead(404, {"Content-Type": "text/plain"});
+				response.end("404 Not found");
+			}
+		});
 	}
 }
 
