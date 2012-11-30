@@ -1,8 +1,11 @@
-var exec = require("child_process").exec;
-var view = require("../protected/view").view;
-var fs = require('fs');
+var 
+exec 		= require("child_process").exec,
+view 		= require("../protected/view").view,
+fs          = require('fs'),
+sys 		= require('sys'),
+formidable 	= require("formidable");
 
-function start(response) {
+function start(response, request) {
 	console.log("Request handler 'start' was called.");
 
 	view('index.htm', true, function(html) {
@@ -12,14 +15,29 @@ function start(response) {
 	});
 }
 
-function upload(response) {
+function upload(response, request) {
 	console.log("Request handler 'upload' was called.");
-	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("Hello World!");
-	response.end();
+
+	var form = new formidable.IncomingForm();
+
+	console.log("about to parse");
+	form.parse(request, function(error, fields, files) {
+		if(error) console.log(error);
+		console.log("parsing done");
+
+		fs.rename(files.file.path, "./views/upload/" + files.file.name, function(err) {
+			if(err) {
+				fs.unlink("./views/upload/" + files.file.name);
+				fs.rename(files.file.path, "./views/upload/" + files.file.name);
+			}
+		})
+		response.writeHead(200, {"Content-Type": "text/html"});
+		response.write("Image uploaded.<br>");
+		response.end('<a href="/">Return to home page</a>');
+	});
 }
 
-function get_images(response) {
+function get_images(response, request) {
 	console.log("Request handler 'get_images' was called.");
 
 	fs.readdir('./views/upload', function(err, images) {

@@ -2,11 +2,11 @@ var fs = require('fs');
 var errmsg = require('./error').errmsg;
 var getMimeType = require('./simple-mime.js')('application/octect-stream');
 
-function route(handle, pathname, response, postData) {
+function route(handle, pathname, response, request) {
 	console.log("About to route a request for " + pathname);
 
 	if (typeof handle[pathname] === 'function') {
-		handle[pathname](response);
+		handle[pathname](response, request);
 	} else {
 
 		var url = pathname.split('/');

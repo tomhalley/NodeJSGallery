@@ -1,13 +1,11 @@
 <h2>Gallery</h2>
 <div data-bind="foreach: images">
-	<a href="#" data-bind="attr: { href : src }" title="[caption]" rel="lightbox">
-		<img src="#" data-bind="attr: { src : src }" alt="picture" />
-	</a>
+	<a href="#" data-bind="attr: { title: name, href : src }" rel="lightbox[gallery]"><img src="#" data-bind="attr: { src : src, alt: name }" /></a>
 </div>
 <h2>Upload</h2>
-<form action="/upload" method="post">
+<form action="/upload" enctype="multipart/form-data" method="post">
 	<fieldset>
-		<input type="file" name="upload" id="upload" />
+		<input type="file" name="file" id="upload" />
 		<br><br>
 		<input type="submit" value="Upload" />
 	</fieldset>

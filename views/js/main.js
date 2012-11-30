@@ -8,7 +8,7 @@ function ViewModel(ko) {
 			dataType: "json",
 			success: function(images) {
 				for(var i = 0; i < images.length; i++) {
-					self.images.push({ src: "/upload/" + images[i] });
+					self.images.push({ src: "/upload/" + images[i], name: images[i] });
 					console.log(images[i]);
 				}
 			}

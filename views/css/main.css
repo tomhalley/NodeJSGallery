@@ -61,7 +61,7 @@ html {
 body {
 	border-radius: 2px;
 	width: 960px;
-	margin: 30px auto 0 auto;
+	margin: 30px auto 50px auto;
 	background: #fff;
 	box-shadow: 0px 0px 7px #ddd;
 }
@@ -110,15 +110,17 @@ section#main {
 }
 
 section#main a {
-	margin: 10px;
+	margin: 10px 5px 5px 0;
+	display: inline-block;
 }
 
 section#main a img {
 	width: auto;
-	height: 145px;
+	height: 150px;
 	display: inline-block;
-	padding: 5px 5px 7px 5px;
-	box-shadow: 0 0 7px #ddd;
+	padding: 5px 5px 15px 5px;
+	padding-bottom: ;
+	box-shadow: 0 0 12px #ccc;
 }
 
 #lightbox-container-image img { max-width: 60px; max-height:50px; }
