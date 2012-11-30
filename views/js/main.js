@@ -8,7 +8,7 @@ function ViewModel(ko) {
 			dataType: "json",
 			success: function(images) {
 				for(var i = 0; i < images.length; i++) {
-					self.images.push({ src: "/img/" + images[i] });
+					self.images.push({ src: "/upload/" + images[i] });
 					console.log(images[i]);
 				}
 			}
@@ -20,7 +20,9 @@ function ViewModel(ko) {
 
 require([
 	'js/knockout.js', 
-	'js/jquery.js'
+	'js/jquery-ui.js',
+	'js/jquery.smooth-scroll.min.js',
+	'js/lightbox.js'
 	], function(ko) {
 	ko.applyBindings(new ViewModel(ko));
 })

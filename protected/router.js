@@ -2,7 +2,7 @@ var fs = require('fs');
 var errmsg = require('./error').errmsg;
 var getMimeType = require('./simple-mime.js')('application/octect-stream');
 
-function route(handle, pathname, response) {
+function route(handle, pathname, response, postData) {
 	console.log("About to route a request for " + pathname);
 
 	if (typeof handle[pathname] === 'function') {
@@ -13,7 +13,7 @@ function route(handle, pathname, response) {
 
 		fs.readdir('./views/' + url[1], function(err, data) {
 			if(data !== 'undefined') {
-				if(url[1] == "img") {
+				if(url[1] == "upload" || url[1] == "images") {
 					console.log("File is an image");
 					fs.readFile('./views' + decodeURIComponent(pathname), function(err, data) {
 						if(err) {

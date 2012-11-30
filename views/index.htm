@@ -1,4 +1,14 @@
-<h2>Home</h2>
+<h2>Gallery</h2>
 <div data-bind="foreach: images">
-	<img data-bind="attr: { src : src }" />
+	<a href="#" data-bind="attr: { href : src }" title="[caption]" rel="lightbox">
+		<img src="#" data-bind="attr: { src : src }" alt="picture" />
+	</a>
 </div>
+<h2>Upload</h2>
+<form action="/upload" method="post">
+	<fieldset>
+		<input type="file" name="upload" id="upload" />
+		<br><br>
+		<input type="submit" value="Upload" />
+	</fieldset>
+</form>

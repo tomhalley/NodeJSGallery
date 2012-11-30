@@ -7,25 +7,25 @@ function start(response) {
 
 	view('index.htm', true, function(html) {
 		response.writeHead(200, {"Content-Type": "text/html"});
-		response.end(html);
+		response.write(html);
+		response.end();
 	});
 }
 
 function upload(response) {
 	console.log("Request handler 'upload' was called.");
-
-	view('upload.htm', true, function(html) {
-		response.writeHead(200, {"Content-Type": "text/html"});
-		response.end(html);
-	});
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("Hello World!");
+	response.end();
 }
 
 function get_images(response) {
 	console.log("Request handler 'get_images' was called.");
 
-	fs.readdir('./views/img', function(err, images) {
+	fs.readdir('./views/upload', function(err, images) {
 		response.writeHead(200, {"Content-Type": "application/json"});
-		response.end(JSON.stringify(images));
+		response.write(JSON.stringify(images));
+		response.end();
 	});
 }
 
