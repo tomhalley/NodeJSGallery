@@ -15,9 +15,11 @@ Installation
 
 Simply download all of the files to a directory, cd to the root directory and run `node protected/run.js`
 
-Libraries
-=========
-[*] jQuery
-[*] KnockoutJS
-[*] Lightbox 2
-[*] simple-mime
+Libraries & Modules
+===================
+* jQuery
+* jQuery-ui
+* KnockoutJS
+* Lightbox 2
+* simple-mime
+* formidable
