@@ -31,9 +31,11 @@ function upload(response, request) {
 				fs.rename(files.file.path, "./views/upload/" + files.file.name);
 			}
 		})
+
 		response.writeHead(200, {"Content-Type": "text/html"});
-		response.write("Image uploaded.<br>");
-		response.end('<a href="/">Return to home page</a>');
+		response.write("Image uploaded. Redirecting...");
+		response.write('<meta http-equiv="refresh" content="0;url=http://localhost:8080/">');
+		response.end();
 	});
 }
 
